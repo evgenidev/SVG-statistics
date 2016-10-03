@@ -1,0 +1,137 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>Outil AU Group : Génération de Graphiques</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,400italic,300italic,500italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700italic,700' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+        <div class="container">
+            <div class="header">
+                <h3 class="text-muted">Outil AU Group : Génération de Graphiques</h3>
+            </div>
+            <div class="row">
+            	 <div class="col-lg-12">
+            		 <!-- Nav tabs -->
+					<ul class="nav nav-tabs">
+					  <li class="active"><a href="#intro" data-toggle="tab">Bienvenue</a></li>
+					  <li class=""><a href="#tutorial" data-toggle="tab">Tutorial</a></li>
+					  <li class=""><a href="#sommairetab" data-toggle="tab">Sommaire</a></li>
+					  <li class=""><a href="#resultat" data-toggle="tab">Pays</a></li>
+					  <li class=""><a href="#graph" data-toggle="tab">Graph</a></li>
+					  <li class=""><a href="#graphgoogle" data-toggle="tab">Google Graph</a></li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="intro">
+							<br/><br/>
+							
+							<label for="pagestartnb">1st country page number</label> : <input type="text" style="width:30px" name="pagestartnb" id="pagestartnb" value="3"/><br/>
+							<label for="documenttitle">Document Title</label> : <input type="text" style="width:400px" name="documenttitle" id="documenttitle" value="AU Group G-Grade 2015"/><br/>
+							
+							<br/><br/>
+							<div id="dropfile-xls" class="dropfile">
+								Glisser Déposer votre fichier XLS
+							</div>
+
+							<button class="btn btn-primary btn-large isdemo" id="demo" type="button">Try the Demo</button>
+
+
+							<button class="btn btn-primary btn-large isdemo loaddemo" id="loaddemo1" attr-file="TESTMFR.xls" type="button">Load XLS Demo</button> <span id="loaddemoinfo"></span>
+							<button class="btn btn-primary btn-large isdemo loaddemo" id="loaddemo2" attr-file="2015-03-Fichier-agence-V3.xls" type="button">Load 2015-03-Fichier-agence-V3.xls</button> <span id="loaddemoinfo"></span>
+							<div id="process-xls"></div><br/>
+
+							<div id="svgdownload"></div>
+
+						</div>
+						<div class="tab-pane" id="tutorial">
+							<h1>Tutorial</h1>
+							<p>A lire bien attentivement</p>
+							<p>
+								Télécharger ici le modèle du fichier excel : <a href="#" class="btn btn-success btn-mini">download</a><br/><br/>
+								Télécharger ici la liste des codes Pays ISO 2 caractères : <a href="ISOCountryCodes081507.xls" class="btn btn-success btn-mini">download</a>
+				  			</p>
+						</div>
+						<div class="tab-pane" id="sommairetab">
+							<div id="sommaire"></div>
+						</div>
+						<div class="tab-pane" id="resultat">
+							<br/>
+							<div id="d3results"></div>
+						</div>
+						<div class="tab-pane" id="graph">
+							<br/><button class="btn btn-primary btn-large isdemo" id="svgdownloadsingle" type="button">Download File</button><br/><br/>
+							<div id="svg"></div>
+						</div>
+						<div class="tab-pane" id="graphgoogle">
+							<div id="regions_div"></div>
+						</div>
+					</div>
+            	 </div>
+            </div>
+            <div class="footer">
+                <p><span class="glyphicon glyphicon-heart"></span> from <a href="http://148.fr" target="_blank">148</a></p>
+            </div>
+        </div>
+
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="../bower_components/bootstrap/js/affix.js"></script>
+        <script src="../bower_components/bootstrap/js/alert.js"></script>
+        <script src="../bower_components/bootstrap/js/dropdown.js"></script>
+        <script src="../bower_components/bootstrap/js/tooltip.js"></script>
+        <script src="../bower_components/bootstrap/js/modal.js"></script>
+        <script src="../bower_components/bootstrap/js/transition.js"></script>
+        <script src="../bower_components/bootstrap/js/button.js"></script>
+        <script src="../bower_components/bootstrap/js/popover.js"></script>
+        <script src="../bower_components/bootstrap/js/carousel.js"></script>
+        <script src="../bower_components/bootstrap/js/scrollspy.js"></script>
+        <script src="../bower_components/bootstrap/js/collapse.js"></script>
+        <script src="../bower_components/bootstrap/js/tab.js"></script>
+        <script src="../bower_components/js-xls/xls.js"></script>
+        <script src="scripts/FileSaver.js"></script>
+        <script src="../bower_components/underscore/underscore.js"></script>
+        <script src="scripts/jspdf.min.js"></script>
+        <script src="scripts/svgToPdf.js"></script>
+
+
+        <!-- endbuild -->
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/google.map.countries.js"></script>
+        <script src="scripts/main.js"></script>
+        <script src="scripts/functions.js"></script>
+        <script src="scripts/events.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
